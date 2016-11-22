@@ -19,7 +19,7 @@ Assume the API might be slow.
 
 #### Task Notes
 
-* Before you start the task you will have to pull down the movie data into your db, a rake task has been provided to do that `rake movie:pull`
+* Before you start the task you will have to pull down the movie data into your db, a rake task has been provided to do that `rake movies:pull`
 
 * In the data provided there are two tables `Movie` and `CastMember`, you can access the index for these resources from their respective enpoints `/movies.json` and `/movies/<id>/cast_members.json`
 
