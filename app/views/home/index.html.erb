@@ -1,4 +1,43 @@
-Hello, World!
+    <div id="container" ng-controller="MoviesController as vm">
 
-<div>
-</div>
+        <div id="left" ng-show="vm.cast_movie" >
+            <img id="poster" ng-src="{{vm.baseUrl+vm.cast_movie.poster_path}}" alt=" {{vm.cast_movie.name}}"/>
+            <div id="poster_details">
+                <h2>{{vm.cast_movie.title}} ( {{vm.cast_movie.release_date | date:'yyyy'}} )</h2>
+                <h2>Overview</h2>
+                <p>{{vm.cast_movie.overview}}</p>
+                <h3>Featured Crew</h3>
+                <ul>
+                    <li ng-repeat="crew in vm.cast_members | orderBy:character | limitTo : 2">
+                        <p ><spann id="crewName">{{crew.name}}</spann><br/>
+                            {{crew.character}}</p>
+                    </li>
+                </ul>
+            </div>
+           <div id="top_billed">
+               <h2>Top Billed Cast</h2>
+               <ul >
+                   <li ng-repeat="person in vm.cast_members | limitTo : 6">
+                        <img class="cast_img" ng-src="{{vm.baseUrl+person.profile_path}}" alt="{{person.name}}">
+                        <p>{{person.name}}</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        
+        <div id="right">
+            <div id="search">
+                <input  id="searchBox" type="search" placeholder="Search Here..." ng-model="vm.searchText" ng-keyup="vm.searchMovies($event)">
+            </div>
+            <ul id="movie_titles">
+                    <li  ng-repeat="movie in vm.movies | filter: vm.searchText" ng-click="vm.rightContent(movie)"  >
+                        <img ng-src={{vm.baseUrl+movie.poster_path}} alt= "{{vm.cast_movie.name}}" >
+                        <p>{{movie.title}}<p><br/>
+                        <p>{{movie.release_date | date:'yyyy-MM-dd'}}</p>
+                    </li>
+            </ul>
+        </div>
+
+    </div>
+    
+
